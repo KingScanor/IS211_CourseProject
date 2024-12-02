@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <title>Dashboard</title>
+  </head>
+<body>
+  <div style="display: flex; align-items: center;">
+    <h1 style="padding-right: 20px;">Dashboard</h1>
+    <a  href="{{ url_for ('logout')}}">
+      <button >Logout</button>
+    </a>
+  </div>
+  <h2>My Posts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="padding-right: 20px;">Posted</th>
+       <th style="padding-right: 20px;">Title</th>
+        <th style="padding-right: 20px;">Modify</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <td>{{ post['date_published'].strftime('%m/%d/%y') }}</td>
+        <td>{{ post['title'] }}</td>
+        <td style="padding-left: 20px;">
+          <a href="{{ url_for('edit_post', id=post['post_id']) }}">Edit</a> |
+          <form method="POST" action="{{ url_for('delete_post', id=post['post_id']) }}" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ url_for('add_post') }}">Add New Post</a>
+</body>

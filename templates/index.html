@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+  <title>My Blog</title>
+</head>
+<body>
+  <div style="display: flex; align-items: center;">
+    <h1>My Blog</h1>
+    <a href="{{ url_for('login') }}" style="margin-left: 10px;">
+      <button>Login</button>
+    </a>
+  </div>
+
+{% for post in posts %}
+<h2><a href="{{ url_for('post', id=post['post_id']) }}">{{ post['title'] }}</a></h2>
+<p>{{ post['content'] | truncate(200) }}</p>
+{% endfor %}
+
+</body>

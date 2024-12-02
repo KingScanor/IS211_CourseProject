@@ -1,0 +1,11 @@
+<h1>{{ post['title']}}</h1>
+<p>{{ post['content']}}</p>
+<p>Published on: {{ post['date_published']}}</p>
+<h2>Comments</h2>
+{% for comment in comments %}
+  <p>{{ comment['content']}}</p>
+{% endfor %}
+<form method="POST" action="{{ url_for('add_comment', post_id=post['post_id']) }}">
+  <textarea name="content" placeholder="Type your comment"></textarea><br><br>
+  <button type="submit">Add comment</button>
+</form>
